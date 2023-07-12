@@ -1,0 +1,76 @@
+class ListADT:
+    def __init__(self):
+        self.items = []
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+    def size(self):
+        return len(self.items)
+
+    def append(self, item):
+        self.items.append(item)
+
+    def insert(self, index, item):
+        if index < 0 or index > len(self.items):
+            raise IndexError("Index out of range")
+        self.items.insert(index, item)
+
+    def remove(self, item):
+        self.items.remove(item)
+
+    def index(self, item):
+        if item in self.items:
+            return self.items.index(item)
+        else:
+            return -1
+
+    def count(self, item):
+        return self.items.count(item)
+
+    def get(self, index):
+        if index < 0 or index >= len(self.items):
+            raise IndexError("Index out of range")
+        return self.items[index]
+
+    def pop(self, index=None):
+        if self.is_empty():
+            raise IndexError("List is empty")
+        if index is None:
+            return self.items.pop()
+        if index < 0 or index >= len(self.items):
+            raise IndexError("Index out of range")
+        return self.items.pop(index)
+
+    def clear(self):
+        self.items = []
+
+    def __str__(self):
+        return str(self.items)
+
+
+# Example usage:
+my_list = ListADT()
+my_list.append(1)
+my_list.append(2)
+my_list.append(3)
+print(my_list)  # Output: [1, 2, 3]
+
+my_list.insert(1, 4)
+print(my_list)  # Output: [1, 4, 2, 3]
+
+my_list.remove(2)
+print(my_list)  # Output: [1, 4, 3]
+
+print(my_list.index(4))  # Output: 1
+
+print(my_list.count(3))  # Output: 1
+
+print(my_list.get(2))  # Output: 3
+
+print(my_list.pop())  # Output: 3
+
+print(my_list)  # Output: [1, 4]
+
+my_list.clear()
+print(my_list)  # Output: []
